@@ -103,10 +103,7 @@ const Ast = struct {
         while (true) {
             const token = lexer.next();
             try tokens.append(allocator, token);
-            switch (token) {
-                .eof => break,
-                else => {},
-            }
+            if (token == .eof) break;
         }
         var parser = Parser{
             .allocator = allocator,
